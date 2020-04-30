@@ -4,8 +4,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Data {
     public class User : Entity {
-        [BsonElement ("Name")]
-
+        [BsonRequired]
         public string UserName { get; set; }
         public string Gender { get; set; }
 
@@ -17,6 +16,6 @@ namespace Data {
 
         public List<string> FollowUserIds { get; set; }
 
-        public string BlackListUserIds { get; set; }
+        public List<string> BlackListUserIds { get; set; }
     }
 }
