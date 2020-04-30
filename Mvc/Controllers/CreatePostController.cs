@@ -54,12 +54,5 @@ namespace Requests {
         public string ImagePath { get; set; }
         public string RequestingView { get; set; }
         public string ControllerOfRequestingView { get; set; }
-
-        public IEnumerable<ValidationResult> Validate (ValidationContext validationContext) {
-            if (ContentType == "Text" && ImagePath != null) {
-                yield return new ValidationResult ("A text post may not contain an image.",
-                    new List<string> () { "ImagePath" });
-            }
-        }
     }
 }

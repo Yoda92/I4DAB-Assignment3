@@ -18,41 +18,40 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Circle" asp-action="Index">Circles</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CreatePost" asp-action="Index">Index</a>
-                        </li>                       
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CreatePost" asp-action="Index1">Index1</a>
-                        </li>
-                        
-                        @if(Program.CurrentUser == null) {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
-                            </li>
-                        } else {
-                            <li class="nav-item" style="margin-left: auto;">
-                                <b class="nav-link">@Program.CurrentUserName</b>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOut">Sign Out</a>
-                            </li>
-                        }
-                    </ul>
+                            @if (Program.CurrentUser != null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Circle" asp-action="Index">Circles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Users</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="CreatePost" asp-action="Index">Index</a>
+                                </li>
+                            }
+                            @if (Program.CurrentUser == null)
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignIn">Sign In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item" style="margin-left: auto;">
+                                    <b class="nav-link">@Program.CurrentUserName</b>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="SignOut">Sign Out</a>
+                                </li>
+                            }
+                        </ul>
                 </div>
             </div>
         </nav>
@@ -65,7 +64,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - Mvc - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2020 - meget meget copyright
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
