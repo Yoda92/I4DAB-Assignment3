@@ -14,6 +14,7 @@ namespace Data.Repositories
         public WallRepository()
         {
             _userService = new UserService();
+            _postService = new PostService();
         }
         public List<Post> GetPosts(string wallUserId, string queryUserId)
         {
