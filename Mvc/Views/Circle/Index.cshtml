@@ -1,7 +1,21 @@
+@model List<Data.Entities.Circle>
+
 @{
     ViewData["Title"] = "Circle Page";
 }
 
-<div class="text-center">
-    <h1>CIRCLES</h1>
+<div class="fb-container">
+    <h1>Circles</h1>
+    <h3>
+        <a href="/">Create new Circle</a>
+    </h3>
+
+    @foreach (var circle in Model)
+    {
+        <div class="fb-container__item">
+            <h3>@circle.Name</h3>
+            
+            <a href="/" class="fb-container__item__bottomright">Join this circle</a>
+        </div>
+    }
 </div>
