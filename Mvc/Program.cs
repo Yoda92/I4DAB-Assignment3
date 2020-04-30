@@ -11,6 +11,7 @@ namespace Mvc
 {
     public class Program
     {
+        public static string CurrentUser { get; set; }
         public static void Main(string[] args)
         {
             CreateHostBuilder(args).Build().Run();
@@ -23,4 +24,12 @@ namespace Mvc
                     webBuilder.UseStartup<Startup>();
                 });
     }
+    public static class Globals
+
+    {
+
+        public static int BranchId { get; set; }
+
+    }
+
 }
