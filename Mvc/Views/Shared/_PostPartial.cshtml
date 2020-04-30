@@ -1,0 +1,30 @@
+@model Data.Entities.Post;
+
+@{
+    bool isImage = Model.ContentType == "Image";
+    bool isPublic = Model.CircleId == null;
+}
+
+<div class="fb-container__item">
+    <h4>@Model.UserName @if(isPublic) {
+        <span>-->@Model.CircleName </span>
+    }</h4>
+
+    <p>@Model.Text</p>
+
+    @if(isImage) {
+        <img src="/img/@Model.ImagePath" style="max-width: 100%"/>
+    }
+
+    @foreach (var comment in Model.Comments)
+    {
+        <div style="border-top: solid 1px black; margin-top: 10px; margin-bottom: 10px">
+            @comment.UserName <span>writes: </span>
+            <p>@comment.Text</p>
+        </div>
+    }
+
+    @{
+        //TODO: Add commenting if user is logged in
+    }
+</div>

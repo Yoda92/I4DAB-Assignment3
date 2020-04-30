@@ -6,9 +6,9 @@
 
 .fb-container__item {
     flex: 1;
-    width: 400px;
+    width: 600px;
     min-height: 200px;
-    max-height: 500px;
+    max-height: 800px;
     border: 2px solid #1b6ec2;
     border-radius: 5px;
     padding-top: 5px;
