@@ -16,6 +16,6 @@ namespace Data {
 
         public List<string> FollowUserIds { get; set; }
 
-        public string BlackListUserIds { get; set; }
+        public List<string> BlackListUserIds { get; set; }
     }
 }
