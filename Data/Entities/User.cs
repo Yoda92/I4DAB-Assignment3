@@ -1,15 +1,13 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Project
-{
-    public class User
-    {
+namespace Data {
+    public class User {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
+        [BsonRepresentation (BsonType.ObjectId)]
         public string Id { get; set; }
 
-        [BsonElement("Name")]
+        [BsonElement ("Name")]
         public string UserName { get; set; }
     }
 }
