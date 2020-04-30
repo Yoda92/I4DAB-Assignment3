@@ -24,7 +24,7 @@ namespace Mvc.Controllers
 
         public IActionResult SignInUser(string name)
         {
-            var user = _userService.Find(user => user.UserName == name);
+            var user = _userService.Find(name);
             if(user.Count > 0)
             {
                 Program.CurrentUser = user[0].Id;

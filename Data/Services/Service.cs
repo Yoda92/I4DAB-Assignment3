@@ -19,8 +19,6 @@ namespace Data.Services {
             return entity;
         }
 
-        public List<TEntity> Find (Func<TEntity, bool> predicate) => _collection.Find (entity => predicate (entity)).ToList ();
-
         public TEntity Update (TEntity entity) {
             _collection.ReplaceOne (t => t.Id == entity.Id, entity);
             return entity;
