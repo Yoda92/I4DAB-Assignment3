@@ -22,6 +22,7 @@ namespace Mvc.Controllers {
             var user = _userService.Find (name);
             if (user.Count > 0) {
                 Program.CurrentUser = user[0].Id;
+                Program.CurrentUserName = user[0].UserName;
             }
             return RedirectToAction ("Index", "Home");
         }
@@ -37,11 +38,13 @@ namespace Mvc.Controllers {
                     SubscribedCircleIds = new List<string> ()
             });
             Program.CurrentUser = user.Id;
+            Program.CurrentUserName = user.UserName;
             return RedirectToAction ("Index", "Home");
         }
 
         public IActionResult SignOut () {
             Program.CurrentUser = null;
+            Program.CurrentUserName = null;
             return RedirectToAction ("Index", "Home");
         }
 
