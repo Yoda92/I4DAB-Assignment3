@@ -2,7 +2,7 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Data {
+namespace Data.Entities {
     public class User : Entity {
         [BsonRequired]
         public string UserName { get; set; }

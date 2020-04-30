@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using MongoDB.Driver;
-namespace Data {
+using Data.Entities;
+namespace Data.Services {
     public class Service<TEntity> where TEntity : Entity {
 
         protected readonly IMongoCollection<TEntity> _collection;
