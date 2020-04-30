@@ -23,9 +23,5 @@ namespace Mvc.Controllers {
 
             return View (user);
         }
-
-        public IActionResult Privacy () {
-            return View ();
-        }
     }
 }
