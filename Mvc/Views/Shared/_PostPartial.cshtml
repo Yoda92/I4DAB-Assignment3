@@ -6,8 +6,8 @@
 }
 
 <div class="fb-container__item">
-    <h4>@Model.UserName @if(isPublic) {
-        <span>-->@Model.CircleName </span>
+    <h4>@Model.UserName @if(!isPublic) {
+        <span>in circle: @Model.CircleName </span>
     }</h4>
 
     <p>@Model.Text</p>
