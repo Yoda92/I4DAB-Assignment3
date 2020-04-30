@@ -23,7 +23,7 @@ namespace Data.Repositories
             foreach(string postId in wallUser.PostIds)
             {
                 Post wallUserPost = _postService.GetById(postId);
-                if(wallUserPost.circleId == 0 || queryUser.SubscribedCircleIds.Contains(wallUserPost.circleId)) wallPosts.Add(wallUserPost);
+                if(wallUserPost.CircleId == null || queryUser.SubscribedCircleIds.Contains(wallUserPost.CircleId)) wallPosts.Add(wallUserPost);
             }
 
             return wallPosts;
