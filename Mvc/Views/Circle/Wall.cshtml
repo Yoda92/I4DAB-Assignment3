@@ -1,0 +1,14 @@
+@model Mvc.Controllers.CircleController.CircleWallViewModel;
+
+@{
+    ViewData["Title"] = "Circle Page";
+}
+
+<div class="fb-container">
+    <h1>@Model.Circle.Name</h1>
+    <h3>Wall:</h3>
+    @foreach (var post in Model.Posts)
+    {
+        @await Html.PartialAsync("_PostPartial", post);
+    }
+</div>
