@@ -2,11 +2,7 @@
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace Data {
-    public class User {
-        [BsonId]
-        [BsonRepresentation (BsonType.ObjectId)]
-        public string Id { get; set; }
-
+    public class User : Entity {
         [BsonElement ("Name")]
         public string UserName { get; set; }
     }

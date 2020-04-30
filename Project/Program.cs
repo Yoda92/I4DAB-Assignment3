@@ -9,7 +9,7 @@ namespace Project {
 
             userService.Create (new User () { UserName = "Anders" });
 
-            List<User> users = userService.Get ();
+            List<User> users = userService.GetAll ();
 
             foreach (var user in users) {
                 System.Console.WriteLine (user.UserName);
