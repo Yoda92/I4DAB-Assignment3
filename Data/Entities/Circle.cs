@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace Data.Entities
-{
-    class Circle : Entity
-    {
+namespace Data.Entities {
+    public class Circle : Entity {
         [BsonRequired]
         public string Name { get; set; }
 
