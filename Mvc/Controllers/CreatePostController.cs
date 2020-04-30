@@ -22,7 +22,7 @@ namespace Mvc.Controllers
         {
             var newPost = new Post()
             {
-                UserId = request.UserId,
+                UserId = Program.CurrentUser,
                 CircleId = request.CircleId,
                 Comments = null,
                 ContentType = request.ContentType,
