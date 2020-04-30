@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
-using MongoDB.Driver;
 using Data.Entities;
+using MongoDB.Driver;
 namespace Data.Services {
     public class Service<TEntity> where TEntity : Entity {
 
@@ -22,6 +22,12 @@ namespace Data.Services {
         public TEntity Update (TEntity entity) {
             _collection.ReplaceOne (t => t.Id == entity.Id, entity);
             return entity;
+        }
+
+        public TEntity GetById (string Id) {
+            var users = _collection.Find (t => t.Id == Id).ToList ();
+            if (users.Count < 1) return null;
+            return users[0];
         }
 
         public TEntity Delete (TEntity entity) {
