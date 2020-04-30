@@ -15,7 +15,7 @@ namespace Data.Services {
             return user;
         }
         public List<User> Find (string name) {
-            var users = _collection.Find (user => user.UserName == name);
+            var users = _collection.Find(user => user.UserName == name);
             return users.ToList ();
         }
 
