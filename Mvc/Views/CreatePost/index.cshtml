@@ -14,20 +14,20 @@
     
     <div class="form-group" id="imagePathButtons" >
         <label asp-for="ContentType"></label>
-        <input type="radio" asp-for="ContentType" name="ContentType" value="Text" checked/> Text post
-        <input type="radio" asp-for="ContentType" name="ContentType" value="Image" /> Image post 
+        <input type="radio" asp-for="ContentType" onclick="toggleVisibilityOfDiv()" name="ContentType" value="Text" checked /> Text post
+        <input type="radio" asp-for="ContentType" onclick="toggleVisibilityOfDiv()" name="ContentType" value="Image" /> Image post 
         <span asp-validation-for="ContentType" class="text-danger"></span>
     </div>
     
     <div class="form-group">
         <label asp-for="Text"></label>
-        <input asp-for="Text"/>
+        <input class="form-control input-lg" asp-for="Text"/>
         <span asp-validation-for="Text" class="text-danger"></span>
     </div>
     
-    <div class="form-group" id="imagePathInput">
-        <label asp-for="ImagePath"></label>
-        <input asp-for="ImagePath"/>
+    <div class="form-group" id="imagePathInput" style="display:none">
+        <label asp-for="ImagePath"></label> 
+        <input class="form-control input-lg" asp-for="ImagePath"/>
         <span asp-validation-for="ImagePath" class="text-danger"></span>
     </div>
     
@@ -50,15 +50,16 @@
 <script >
     function toggleVisibilityOfDiv()
     {
-        let imagePathButton = document.getElementById("imagePathButtons",);
+        let imagePathButtons = document.getElementsByName("ContentType",);
         let imagePathInput = document.getElementById("imagePathInput");
         
+        let contentType = document.querySelector('input[name = "ContentType"]:checked').value;
         
-        if (imagePathButton.value === "Text"){
+        if ( contentType === "Text"){
             imagePathInput.style.display = "none";
         }
-        else if (imagePathButton.textContent === "Image"){
-            imagePathInput.style.display = "flex";
+        else if (contentType === "Image"){
+            imagePathInput.style.display = "block";
         }            
     }
 </script>

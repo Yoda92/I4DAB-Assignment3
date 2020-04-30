@@ -18,6 +18,7 @@ namespace Mvc.Controllers
             _postService = new PostService();
         }
         
+        
         public async Task<IActionResult> CreatePost(CreatePostRequest request)
         {
             var newPost = new Post()
@@ -50,7 +51,7 @@ namespace Mvc.Controllers
 
 namespace Requests
 {
-    public class CreatePostRequest
+    public class CreatePostRequest 
     {
         public string UserId { get; set; }
         public string CircleId { get; set; }
@@ -59,16 +60,5 @@ namespace Requests
         public string ImagePath { get; set; }
         public string RequestingView { get; set; }
         public string ControllerOfRequestingView { get; set; }
-        
-
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            if (ContentType == "Text" && ImagePath != null)
-            {
-                yield return new ValidationResult("A text post may not contain an image.",
-                    new List<string>() {"ImagePath"});
-            }
-        }
     }
 }
