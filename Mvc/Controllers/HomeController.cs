@@ -19,8 +19,8 @@ namespace Mvc.Controllers {
 
         public IActionResult Index ()
         {
-            var user = _userService.Find(Program.CurrentUser);
-            
+            var user = _userService.GetById(Program.CurrentUser);
+
             return View (user);
         }
 
