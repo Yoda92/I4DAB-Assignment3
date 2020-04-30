@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Project
 {
@@ -6,7 +7,19 @@ namespace Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var userService = new UserService();
+
+            userService.Create(new User() {UserName = "Anders"});
+
+            List<User> users = userService.Get();
+
+            foreach (var user in users)
+            {
+                System.Console.WriteLine(user.UserName);
+            }
+
+            while (true) { }
+
         }
     }
 }
