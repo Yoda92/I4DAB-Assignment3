@@ -1,0 +1,32 @@
+@model List<Data.Entities.User>
+
+@{
+    ViewData["Title"] = "Users Page";
+}
+
+<div class="fb-container">
+    <h1>Users</h1>
+
+    @foreach (var user in ViewBag.users)
+    {
+        <div class="fb-container__item">
+            <h3>@user.UserName 
+                @if(Program.CurrentUser == user.Id) {
+                    <span>(You)</span>
+                }
+            </h3>
+            @if(ViewBag.currentUser != null && ViewBag.currentUser.Id != user.Id) {
+                <div class="fb-container__item__bottom" style="display: flex;">
+                    @if(ViewBag.currentUser.BlackListUserIds.Contains(user.Id)) {
+                        <b style="margin-left: auto">BlackListed</b>
+                    } else if (ViewBag.currentUser.FollowUserIds.Contains(user.Id)) {
+                        <b>Followed</b>
+                    } else {
+                        <a href="/Users/Follow/@user.Id">Follow user</a>
+                        <a href="/Users/Blacklist/@user.Id" style="margin-left: auto">Blacklist user</a>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>

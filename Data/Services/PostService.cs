@@ -1,6 +1,9 @@
-namespace Data
+using Data.Entities;
+using Data.Services;
+
+namespace Data.Services
 {
-    public class PostService
+    public class PostService : Service<Post>
     {
         
     }

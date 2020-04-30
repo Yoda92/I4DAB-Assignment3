@@ -14,11 +14,13 @@
     {
         <div class="fb-container__item">
             <h3>@circle.Name</h3>
-            @if(!circle.UserIds.Contains(Program.CurrentUser)){
-                <a href="/Circle/Subscribe/@circle.Id" class="fb-container__item__bottomright">Join this circle</a>
-            } else
-            {
-                <p class="fb-container__item__bottomright">You are already member of this circle</p>   
+            @if(Program.CurrentUser != null) {
+                @if(!circle.UserIds.Contains(Program.CurrentUser)){
+                    <a href="/Circle/Subscribe/@circle.Id" class="fb-container__item__bottomright">Join this circle</a>
+                } else
+                {
+                    <p class="fb-container__item__bottomright">You are already member of this circle</p>   
+                }
             }
         </div>
     }

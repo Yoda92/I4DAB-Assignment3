@@ -18,5 +18,25 @@ namespace Data.Services {
             var users = _collection.Find(user => user.UserName == name);
             return users.ToList ();
         }
+
+        public User FollowUser (User toFollow, User follower) {
+            if (follower.FollowUserIds.Contains (toFollow.Id)) return follower;
+
+            follower.FollowUserIds.Add (toFollow.Id);
+            var filter = Builders<User>.Filter.Eq ("Id", follower.Id);
+            var update = Builders<User>.Update.Set ("FollowUserIds", follower.FollowUserIds);
+            _collection.UpdateOne (filter, update);
+            return follower;
+        }
+
+        public User BlacklistUser (User toBlacklist, User blacklister) {
+            if (blacklister.BlackListUserIds.Contains (toBlacklist.Id)) return blacklister;
+
+            blacklister.BlackListUserIds.Add (toBlacklist.Id);
+            var filter = Builders<User>.Filter.Eq ("Id", blacklister.Id);
+            var update = Builders<User>.Update.Set ("BlackListUserIds", blacklister.BlackListUserIds);
+            _collection.UpdateOne (filter, update);
+            return blacklister;
+        }
     }
 }

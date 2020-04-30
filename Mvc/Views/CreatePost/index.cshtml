@@ -1,0 +1,64 @@
+@model Requests.CreatePostRequest
+
+@{
+    ViewData["Title"] = "index0";
+}
+
+<h2>Create post</h2>
+
+
+<form asp-action="CreatePost">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+    
+    
+    <div class="form-group" id="imagePathButtons" >
+        <label asp-for="ContentType"></label>
+        <input type="radio" asp-for="ContentType" name="ContentType" value="Text" checked/> Text post
+        <input type="radio" asp-for="ContentType" name="ContentType" value="Image" /> Image post 
+        <span asp-validation-for="ContentType" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Text"></label>
+        <input asp-for="Text"/>
+        <span asp-validation-for="Text" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group" id="imagePathInput">
+        <label asp-for="ImagePath"></label>
+        <input asp-for="ImagePath"/>
+        <span asp-validation-for="ImagePath" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <input type="submit" value="Post!" class="btn btn-primary">
+    </div>
+    
+    <div class="form-group">
+        <input type="hidden" asp-for="RequestingView" value="Index"/>
+    </div>
+    
+    <div class="form-group" >
+        <input type="hidden" asp-for="ControllerOfRequestingView" value="CreatePost"/>
+    </div>
+    
+
+
+</form>    
+
+<script >
+    function toggleVisibilityOfDiv()
+    {
+        let imagePathButton = document.getElementById("imagePathButtons",);
+        let imagePathInput = document.getElementById("imagePathInput");
+        
+        
+        if (imagePathButton.value === "Text"){
+            imagePathInput.style.display = "none";
+        }
+        else if (imagePathButton.textContent === "Image"){
+            imagePathInput.style.display = "flex";
+        }            
+    }
+</script>

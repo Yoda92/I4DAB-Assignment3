@@ -20,6 +20,10 @@
     margin-top: 20px;
 }
 
+.fb-container__item__bottom {
+    margin-top: auto;
+}
+
 .fb-container__item__bottomright {
     margin-top: auto;
     margin-left: auto;
