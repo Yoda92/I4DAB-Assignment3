@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -17,21 +18,21 @@ namespace Mvc.Controllers {
             _userService = new UserService ();
         }
 
-        public async Task<IActionResult> CreatePost (CreatePostRequest request) {
+        public async Task<IActionResult> CreatePost (string contentType, string text, string imagePath, string requestingView, string controllerOfRequestingView, string circleId, string circleName) {
             var newPost = new Post () {
                 UserId = Program.CurrentUser,
                 UserName = Program.CurrentUser,
-                CircleId = request.CircleId,
-                CircleName = "Still missing lol",
+                CircleId = circleId,
+                CircleName = circleName,
                 Comments = new List<Comment> (),
-                ContentType = request.ContentType,
-                Text = request.Text,
-                ImagePath = request.ImagePath
+                ContentType = contentType,
+                Text = text,
+                ImagePath = imagePath
             };
-
+            Console.WriteLine(newPost);
             var result = _postService.Create (newPost);
             _userService.AddPostToUser (_userService.GetById (Program.CurrentUser), result);
-            return RedirectToAction (request.RequestingView, request.ControllerOfRequestingView);
+            return RedirectToAction (requestingView, controllerOfRequestingView,new{circleId});
         }
 
         public ActionResult Index () {
