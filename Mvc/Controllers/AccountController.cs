@@ -23,8 +23,9 @@ namespace Mvc.Controllers {
             if (user.Count > 0) {
                 Program.CurrentUser = user[0].Id;
                 Program.CurrentUserName = user[0].UserName;
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction ("Index", "Home");
+            return RedirectToAction ("SignIn", "Account");
         }
 
         public IActionResult RegisterUser (string name) {
