@@ -1,0 +1,15 @@
+
+@model Mvc.Controllers.UsersController.WallDto;
+
+@{
+    ViewData["Title"] = "Users Page";
+}
+
+<div class="fb-container">
+    <h1>User: @Model.WallUser.UserName</h1>
+    <h3>Wall</h3>
+    @foreach (var post in Model.Posts)
+    {
+        @await Html.PartialAsync("_PostPartial", post);
+    }
+</div>

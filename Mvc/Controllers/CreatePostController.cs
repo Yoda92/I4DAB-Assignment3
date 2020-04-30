@@ -7,45 +7,41 @@ using Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Requests;
 
-namespace Mvc.Controllers
-{
-    public class CreatePostController : Controller
-    {
+namespace Mvc.Controllers {
+    public class CreatePostController : Controller {
         private PostService _postService;
-        
-        public CreatePostController()
-        {
-            _postService = new PostService();
+        private UserService _userService;
+
+        public CreatePostController () {
+            _postService = new PostService ();
+            _userService = new UserService ();
         }
-        
-        
-        public async Task<IActionResult> CreatePost(CreatePostRequest request)
-        {
-            var newPost = new Post()
-            {
+
+        public async Task<IActionResult> CreatePost (CreatePostRequest request) {
+            var newPost = new Post () {
                 UserId = Program.CurrentUser,
+                UserName = Program.CurrentUser,
                 CircleId = request.CircleId,
-                Comments = null,
+                CircleName = "Still missing lol",
+                Comments = new List<Comment> (),
                 ContentType = request.ContentType,
                 Text = request.Text,
                 ImagePath = request.ImagePath
             };
 
-            var result = _postService.Create(newPost);
-            return RedirectToAction(request.RequestingView,request.ControllerOfRequestingView);
+            var result = _postService.Create (newPost);
+            _userService.AddPostToUser (_userService.GetById (Program.CurrentUser), result);
+            return RedirectToAction (request.RequestingView, request.ControllerOfRequestingView);
         }
 
-        public ActionResult Index()
-        {
-            return View();
+        public ActionResult Index () {
+            return View ();
         }
     }
 }
 
-namespace Requests
-{
-    public class CreatePostRequest 
-    {
+namespace Requests {
+    public class CreatePostRequest {
         public string UserId { get; set; }
         public string CircleId { get; set; }
         public string ContentType { get; set; }

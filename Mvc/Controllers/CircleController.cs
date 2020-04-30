@@ -11,17 +11,34 @@ using Microsoft.Extensions.Logging;
 namespace Mvc.Controllers {
     public class CircleController : Controller {
 
+        public class CircleWallViewModel {
+            public Circle Circle { get; set; }
+            public List<Post> Posts { get; set; }
+        }
+
         CircleService _circleService;
         UserService _userService;
+        PostService _postService;
         public CircleController () {
             _circleService = new CircleService ();
             _userService = new UserService ();
+            _postService = new PostService ();
         }
 
         public IActionResult Index () {
             List<Circle> circles = _circleService.GetAll ();
 
             return View (circles);
+        }
+
+        [Route ("Circle/{circleId}")]
+        public IActionResult Index (string circleId) {
+            CircleWallViewModel viewModel = new CircleWallViewModel () {
+                Circle = _circleService.GetById (circleId),
+                Posts = _postService.GetByCircleId (circleId),
+            };
+
+            return View ("Wall", viewModel);
         }
 
         [HttpGet]

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Data.Entities;
+using Data.Repositories;
 using Data.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -11,9 +12,16 @@ using Microsoft.Extensions.Logging;
 namespace Mvc.Controllers {
     public class UsersController : Controller {
 
+        public class WallDto {
+            public List<Post> Posts { get; set; }
+            public User WallUser { get; set; }
+        }
+
         UserService _userService;
+        WallRepository _wallrepo;
         public UsersController () {
             _userService = new UserService ();
+            _wallrepo = new WallRepository ();
         }
 
         public IActionResult Index () {
@@ -22,6 +30,16 @@ namespace Mvc.Controllers {
             ViewBag.users = users;
             ViewBag.currentUser = currentUser;
             return View (users);
+        }
+
+        [Route ("Users/Wall/{userId}")]
+        public IActionResult Wall (string userId) {
+            WallDto dto = new WallDto () {
+                Posts = _wallrepo.GetPosts (userId, Program.CurrentUser), //wallService.getsomething
+                WallUser = _userService.GetById (userId)
+            };
+
+            return View (dto);
         }
 
         [Route ("Users/Follow/{userId}")]
