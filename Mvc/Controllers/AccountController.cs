@@ -24,17 +24,18 @@ namespace Mvc.Controllers
 
         public IActionResult SignInUser(string name)
         {
-            if (_userService.Find(user => user.UserName == name) != null)
+            var user = _userService.Find(user => user.UserName == name);
+            if(user.Count > 0)
             {
-                Program.CurrentUser = name;
+                Program.CurrentUser = user[0].Id;
             }
             return RedirectToAction("Index", "Home");
         }
 
         public IActionResult RegisterUser(string name)
         {
-            _userService.Create(new User() {UserName = name});
-            Program.CurrentUser = name;
+            var user = _userService.Create(new User() {UserName = name});
+            Program.CurrentUser = user.Id;
             return RedirectToAction("Index", "Home");
         }
 
