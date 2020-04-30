@@ -21,5 +21,18 @@ namespace Mvc.Controllers {
 
             return View (circles);
         }
+
+        [HttpGet]
+        public IActionResult Create () {
+            return View ();
+        }
+
+        [HttpPost]
+        public IActionResult Create (Circle c) {
+            c.PostIds = new List<string> ();
+            c.UserIds = new List<string> ();
+            _circleService.Create (c);
+            return RedirectToAction ("Index");
+        }
     }
 }
