@@ -34,7 +34,16 @@ namespace Mvc.Controllers
 
         public IActionResult RegisterUser(string name)
         {
-            var user = _userService.Create(new User() {UserName = name});
+            var user = _userService.Create(new User()
+            {
+                UserName = name,
+                Age = 0,
+                BlackListUserIds = new List<string>(),
+                FollowUserIds = new List<string>(),
+                Gender = "Gender Fluid",
+                PostIds = new List<string>(),
+                SubscribedCircleIds = new List<string>()
+            });
             Program.CurrentUser = user.Id;
             return RedirectToAction("Index", "Home");
         }
