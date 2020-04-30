@@ -17,7 +17,7 @@ namespace Data
         {
             if (ContentType == "Text" && ImagePath!=null)
             {
-                yield return new ValidationResult("A text post may not contain an image.",new List<string>({"ImagePath"});
+                yield return new ValidationResult("A text post may not contain an image.",new List<string>(){"ImagePath"});
             }
         }
     }
