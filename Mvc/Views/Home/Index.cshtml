@@ -1,8 +1,63 @@
-﻿@{
+﻿@model Data.Entities.User
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div style="width: 100%; display: flex; align-content:center; flex-direction: column; align-items:center">
+    @if(Model != null) { 
+    <h1>Profile</h1>
+    <div style="max-width: 600px; width:100%">
+        <table style="width: 100%">
+            <tbody>
+                <tr>
+                    <td>Name: </td>
+                    <td>
+                        @Model.UserName
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender: </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Gender)
+                    </td>
+                </tr>
+                <tr>
+                    <td>Age: </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Age)
+                    </td>
+                </tr>
+                @*<tr>
+                    <td>Followed Users: </td>
+                    @foreach (var item in Model)
+                    {
+                        <td>
+                            @Html.DisplayFor(model => model.FollowUserIds)
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>Subscribed Circles: </td>
+                    @foreach (var item in Model)
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubscribedCircleIds)
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td>Wall: </td>
+                    @foreach (var item in Model)
+                    {
+                        <td>
+                            @Html.DisplayFor(model => model.PostIds)
+                        </td>
+                    }
+                </tr>*@
+                </tbody>
+        </table>
+        <br>
+    </div>
+      }
 </div>

@@ -5,17 +5,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Data.Entities;
+using Data.Services;
 
 namespace Mvc.Controllers {
     public class HomeController : Controller {
-        private readonly ILogger<HomeController> _logger;
+        private UserService _userService;
 
-        public HomeController (ILogger<HomeController> logger) {
-            _logger = logger;
+        public HomeController()
+        {
+            _userService = new UserService();
         }
 
-        public IActionResult Index () {
-            return View ();
+        public IActionResult Index ()
+        {
+            var user = _userService.GetById(Program.CurrentUser);
+
+            return View (user);
         }
 
         public IActionResult Privacy () {
