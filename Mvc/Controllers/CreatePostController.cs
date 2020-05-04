@@ -21,7 +21,7 @@ namespace Mvc.Controllers {
         public async Task<IActionResult> CreatePost (string contentType, string text, string imagePath, string requestingView, string controllerOfRequestingView, string circleId, string circleName) {
             var newPost = new Post () {
                 UserId = Program.CurrentUser,
-                UserName = Program.CurrentUser,
+                UserName = Program.CurrentUserName,
                 CircleId = circleId,
                 CircleName = circleName,
                 Comments = new List<Comment> (),
