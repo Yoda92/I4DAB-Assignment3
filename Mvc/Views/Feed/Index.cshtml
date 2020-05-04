@@ -1,18 +1,13 @@
 @model List<Data.Entities.Post>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Feed Page";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>title</title>
-</head>
-<body>
-<div>
-      
+<div class="fb-container">
+    <h3>Feed</h3>
+    @foreach (var post in Model)
+    {
+        @await Html.PartialAsync("_PostPartial", post);
+    }
 </div>
-</body>
-</html>

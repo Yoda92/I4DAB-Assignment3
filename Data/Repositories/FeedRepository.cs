@@ -6,7 +6,7 @@ using Data.Services;
 
 namespace Data.Repositories
 {
-    class FeedRepository
+    public class FeedRepository
     {
         private UserService _userService;
         private PostService _postService;
