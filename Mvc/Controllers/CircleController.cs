@@ -35,7 +35,7 @@ namespace Mvc.Controllers {
         public IActionResult Index (string circleId) {
             CircleWallViewModel viewModel = new CircleWallViewModel () {
                 Circle = _circleService.GetById (circleId),
-                Posts = _postService.GetByCircleId (circleId),
+                Posts = _postService.GetByCircleId (circleId, Program.CurrentUser),
             };
 
             return View ("Wall", viewModel);

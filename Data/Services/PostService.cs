@@ -6,8 +6,12 @@ using MongoDB.Driver;
 
 namespace Data.Services {
     public class PostService : Service<Post> {
-        public List<Post> GetByCircleId (string circleId) {
-            var posts = _collection.Find (p => p.CircleId == circleId);
+        public List<Post> GetByCircleId (string circleId, string queryUserId) {
+            var user = new UserService ().GetById (queryUserId);
+            var posts = _collection.Find (p => p.CircleId == circleId).ToEnumerable ()
+                .Where (p => !user.BlackListUserIds.Contains (p.UserId))
+                .Reverse ()
+                .Take (6);
             return posts.ToList ();
         }
 
