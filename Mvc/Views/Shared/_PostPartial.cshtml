@@ -9,7 +9,7 @@
     <h4>@Model.UserName @if(!isPublic) {
         <span>in circle: @Model.CircleName </span>
     }</h4>
-    <p>@(new ObjectId(Model.Id).CreationTime)</p>
+    <p>@(new ObjectId(Model.Id).CreationTime.ToLocalTime())</p>
     <p>@Model.Text</p>
 
     @if(isImage) {
