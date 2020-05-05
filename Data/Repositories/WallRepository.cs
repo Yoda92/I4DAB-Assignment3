@@ -22,6 +22,8 @@ namespace Data.Repositories {
                 if (wallUserPost.CircleId == null || queryUser.SubscribedCircleIds.Contains (wallUserPost.CircleId)) wallPosts.Add (wallUserPost);
             }
 
+            wallPosts.Sort();
+            wallPosts.Reverse();
             return wallPosts.GetRange(0, 6);
         }
     }
