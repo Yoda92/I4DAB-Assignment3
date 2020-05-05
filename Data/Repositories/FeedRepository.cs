@@ -36,7 +36,10 @@ namespace Data.Repositories
                     foreach (string postId in followUser.PostIds)
                     {
                         Post followUserPost = _postService.GetById(postId);
-                        if (followUserPost.CircleId == null) feedPosts.Add(followUserPost);
+                        if (followUserPost.CircleId == null)
+                        {
+                            feedPosts.Add(followUserPost);
+                        }
                     }
                 }
             }
@@ -47,14 +50,17 @@ namespace Data.Repositories
                 foreach (string postId in followCircle.PostIds)
                 {
                     Post followCirclePost = _postService.GetById(postId);
-                    if (!queryUser.BlackListUserIds.Contains(followCirclePost.UserId)) feedPosts.Add(followCirclePost);
+                    if (!queryUser.BlackListUserIds.Contains(followCirclePost.UserId))
+                    {
+                        feedPosts.Add(followCirclePost);
+                    }
                 }
             }
 
             feedPosts.Sort();
             feedPosts.Reverse();
 
-            return feedPosts;
+            return feedPosts.GetRange(0, 6);
         }
     }
 }
