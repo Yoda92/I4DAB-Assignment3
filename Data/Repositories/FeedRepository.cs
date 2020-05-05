@@ -49,7 +49,7 @@ namespace Data.Repositories {
             feedPosts.Sort ();
             feedPosts.Reverse ();
 
-            return feedPosts.Take(6).ToList();
+            return feedPosts.GroupBy (p => p.Id).Select (p => p.First ()).Take (6).ToList ();
         }
     }
 }
