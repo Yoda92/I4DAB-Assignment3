@@ -51,6 +51,9 @@ namespace Data.Repositories
                 }
             }
 
+            feedPosts.Sort();
+            feedPosts.Reverse();
+
             return feedPosts;
         }
     }
