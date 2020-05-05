@@ -9,6 +9,7 @@
     width: 600px;
     min-height: 200px;
     max-height: 800px;
+    overflow: scroll;
     border: 2px solid #1b6ec2;
     border-radius: 5px;
     padding-top: 5px;
