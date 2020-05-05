@@ -1,3 +1,4 @@
+@using MongoDB.Bson
 @model Data.Entities.Post;
 
 @{
@@ -32,4 +33,6 @@
     @{
         //TODO: Add commenting if user is logged in
     }
+    
+    <p>@{ new DateTime(Convert.ToInt64(Model.Id.ToString().Substring(0, 8), 16) * 1000);}</p>
 </div>

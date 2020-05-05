@@ -27,7 +27,7 @@ namespace Mvc.Controllers {
                 Comments = new List<Comment> (),
                 ContentType = contentType,
                 Text = text,
-                ImagePath = imagePath
+                ImagePath = imagePath,
             };
             Console.WriteLine (newPost);
             var result = _postService.Create (newPost);
