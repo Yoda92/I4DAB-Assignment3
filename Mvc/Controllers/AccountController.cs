@@ -28,13 +28,13 @@ namespace Mvc.Controllers {
             return RedirectToAction ("SignIn", "Account");
         }
 
-        public IActionResult RegisterUser (string name) {
+        public IActionResult RegisterUser (string name, string gender, int age) {
             var user = _userService.Create (new User () {
                 UserName = name,
-                    Age = 0,
+                    Age = age,
                     BlackListUserIds = new List<string> (),
                     FollowUserIds = new List<string> (),
-                    Gender = "Gender Fluid",
+                    Gender = gender,
                     PostIds = new List<string> (),
                     SubscribedCircleIds = new List<string> ()
             });

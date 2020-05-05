@@ -13,7 +13,7 @@
     <p>@Model.Text</p>
 
     @if(isImage) {
-        <img src="/img/@Model.ImagePath" style="max-width: 100%"/>
+        <img src="@Model.ImagePath" style="max-width: 100%"/>
     }
 
     @foreach (var comment in Model.Comments)

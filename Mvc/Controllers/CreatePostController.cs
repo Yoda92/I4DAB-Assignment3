@@ -12,10 +12,12 @@ namespace Mvc.Controllers {
     public class CreatePostController : Controller {
         private PostService _postService;
         private UserService _userService;
+        private CircleService _circleService;
 
         public CreatePostController () {
             _postService = new PostService ();
             _userService = new UserService ();
+            _circleService = new CircleService ();
         }
 
         public async Task<IActionResult> CreatePost (string contentType, string text, string imagePath, string requestingView, string controllerOfRequestingView, string circleId, string circleName) {
@@ -29,9 +31,13 @@ namespace Mvc.Controllers {
                 Text = text,
                 ImagePath = imagePath,
             };
-            Console.WriteLine (newPost);
             var result = _postService.Create (newPost);
             _userService.AddPostToUser (_userService.GetById (Program.CurrentUser), result);
+            if (circleId != null) {
+                Circle circle = _circleService.GetById (circleId);
+                _circleService.AddPostToCircle (newPost, circle);
+            }
+
             return RedirectToAction (requestingView, controllerOfRequestingView, new { circleId });
         }
 
@@ -48,7 +54,6 @@ namespace Mvc.Controllers {
                 Text = cr.Text
             };
             var post = _postService.GetById (postId);
-            System.Console.WriteLine (postId);
             _postService.AddCommentToPost (comment, post);
 
             if (post.CircleId != null) {
