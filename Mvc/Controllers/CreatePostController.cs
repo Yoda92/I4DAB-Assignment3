@@ -29,15 +29,35 @@ namespace Mvc.Controllers {
                 Text = text,
                 ImagePath = imagePath
             };
-            Console.WriteLine(newPost);
+            Console.WriteLine (newPost);
             var result = _postService.Create (newPost);
             _userService.AddPostToUser (_userService.GetById (Program.CurrentUser), result);
-            return RedirectToAction (requestingView, controllerOfRequestingView,new{circleId});
+            return RedirectToAction (requestingView, controllerOfRequestingView, new { circleId });
         }
 
         public ActionResult Index () {
             return View ();
         }
+
+        [HttpPost]
+        public IActionResult AddComment (CommentRequest cr) {
+            var postId = cr.postId;
+            Comment comment = new Comment () {
+                UserId = Program.CurrentUser,
+                UserName = Program.CurrentUserName,
+                Text = cr.Text
+            };
+            var post = _postService.GetById (postId);
+            System.Console.WriteLine (postId);
+            _postService.AddCommentToPost (comment, post);
+
+            if (post.CircleId != null) {
+                return RedirectToAction ("Index", "Circle", new { post.CircleId });
+            }
+
+            return RedirectToAction ("Index", "Feed");
+        }
+
     }
 }
 
@@ -50,5 +70,10 @@ namespace Requests {
         public string ImagePath { get; set; }
         public string RequestingView { get; set; }
         public string ControllerOfRequestingView { get; set; }
+    }
+
+    public class CommentRequest {
+        public string Text { get; set; }
+        public string postId { get; set; }
     }
 }

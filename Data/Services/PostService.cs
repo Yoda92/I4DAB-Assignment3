@@ -12,10 +12,10 @@ namespace Data.Services {
         }
 
         public Post AddCommentToPost (Comment comment, Post post) {
-            if (post.Comments.Contains (comment)) return post;
             post.Comments.Add (comment);
             var filter = Builders<Post>.Filter.Eq ("Id", post.Id);
             var update = Builders<Post>.Update.Set ("Comments", post.Comments);
+            _collection.UpdateOne (filter, update);
             return post;
         }
     }

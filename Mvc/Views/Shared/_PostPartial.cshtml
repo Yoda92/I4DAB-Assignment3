@@ -2,9 +2,8 @@
 
 @{
     bool isImage = Model.ContentType == "Image";
-    bool isPublic = Model.CircleId == null;
+    bool isPublic = Model.CircleId is null; 
 }
-
 <div class="fb-container__item">
     <h4>@Model.UserName @if(!isPublic) {
         <span>in circle: @Model.CircleName </span>
@@ -24,6 +23,12 @@
         </div>
     }
 
+    <div style="border-top: solid 1px black; margin-top: 10px; margin-bottom: 10px">
+        <form method="post" asp-action="AddComment" asp-controller="CreatePost">
+            <input style="width: 100%" type="text" name="Text" placeholder="Add comment">
+            <input type="hidden" name="postId" value="@Model.Id">
+        </form>
+    </div>
     @{
         //TODO: Add commenting if user is logged in
     }
