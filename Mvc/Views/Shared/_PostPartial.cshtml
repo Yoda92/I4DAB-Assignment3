@@ -9,7 +9,7 @@
     <h4>@Model.UserName @if(!isPublic) {
         <span>in circle: @Model.CircleName </span>
     }</h4>
-
+    <p>@(new ObjectId(Model.Id).CreationTime)</p>
     <p>@Model.Text</p>
 
     @if(isImage) {
@@ -30,9 +30,5 @@
             <input type="hidden" name="postId" value="@Model.Id">
         </form>
     </div>
-    @{
-        //TODO: Add commenting if user is logged in
-    }
     
-    <p>@(new ObjectId(Model.Id).CreationTime)</p>
 </div>

@@ -50,6 +50,10 @@ namespace SeedData {
             _circleService.AddPostToCircle (p3, c);
             _userService.AddPostToUser (u2, p3);
 
+            Post p4 = CreatePost (u3, null, "Image", "Look at this view!", "https://forestsnews.cifor.org/wp-content/uploads/2014/12/integrated-rice-and-fish-farms-anirban-mahapatra-1024x767.jpg");
+            _postService.Create (p4);
+            _userService.AddPostToUser (u3, p4);
+
             Comment comment = new Comment () {
                 UserId = p3.UserId,
                 UserName = p3.UserName,
@@ -57,6 +61,16 @@ namespace SeedData {
             };
 
             _postService.AddCommentToPost (comment, p1);
+
+            System.Console.WriteLine ("=======================================");
+            System.Console.WriteLine ("Done seeding data");
+            System.Console.WriteLine ("Users are: Anders, David, Lau, Christoffer");
+            System.Console.WriteLine ("Anders and David are part of same circle");
+            System.Console.WriteLine ("David is blacklisted by Anders");
+            System.Console.WriteLine ("Christoffer is followed by Anders");
+            System.Console.WriteLine ("Press enter to exit");
+
+            System.Console.ReadLine ();
         }
 
         private static User CreateUser (string username, string gender, int age) {
