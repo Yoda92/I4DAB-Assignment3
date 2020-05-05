@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Data.Entities;
 using Data.Services;
@@ -22,9 +23,9 @@ namespace Data.Repositories {
                 if (wallUserPost.CircleId == null || queryUser.SubscribedCircleIds.Contains (wallUserPost.CircleId)) wallPosts.Add (wallUserPost);
             }
 
-            wallPosts.Sort();
-            wallPosts.Reverse();
-            return wallPosts.GetRange(0, 6);
+            wallPosts.Sort ();
+            wallPosts.Reverse ();
+            return wallPosts.Take (6).ToList ();
         }
     }
 }
