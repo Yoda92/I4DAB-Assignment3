@@ -29,7 +29,7 @@ namespace Mvc.Controllers {
                 Comments = new List<Comment> (),
                 ContentType = contentType,
                 Text = text,
-                ImagePath = imagePath
+                ImagePath = imagePath,
             };
             var result = _postService.Create (newPost);
             _userService.AddPostToUser (_userService.GetById (Program.CurrentUser), result);
